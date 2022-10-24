@@ -1,5 +1,6 @@
 import React from "react";
-import { FaBeer, FaGraduationCap } from "react-icons/fa";
+import { FaGraduationCap } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
@@ -28,13 +29,13 @@ const Navbar = () => {
               className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
-                <a>Courses</a>
+                <Link to="/courses">Courses</Link>
               </li>
               <li>
-                <a>FAQ</a>
+                <Link to="/faq">FAQ</Link>
               </li>
               <li>
-                <a>Blog</a>
+                <Link to="/blog">Blog</Link>
               </li>
             </ul>
           </div>
@@ -87,6 +88,10 @@ const Navbar = () => {
               </li>
               <li>
                 <a>Logout</a>
+              </li>
+
+              <li>
+                <a>Sign Up</a>
               </li>
             </ul>
           </div>
