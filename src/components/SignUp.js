@@ -135,14 +135,14 @@ const SignUp = () => {
                   className="btn btn-wide btn-outline my-2 capitalize"
                   onClick={googleSignIn}
                 >
-                  Login with Google
+                  Sign Up with Google
                 </button>
                 {/* {user ? navigate("/") : navigate("/login")} */}
                 <button
                   className="btn btn-wide btn-outline my-2 capitalize"
                   onClick={gitHubSignIn}
                 >
-                  Login with Github
+                  Sign Up with Github
                 </button>
               </div>
               <div className="form-control mt-6">
