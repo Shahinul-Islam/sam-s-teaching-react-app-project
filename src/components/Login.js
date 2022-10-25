@@ -1,9 +1,36 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import UserContext, { AuthContext } from "../contexts/UserContext";
+import React, { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../contexts/UserContext";
 
 const Login = () => {
   // const {} = UserContext(AuthContext);
+  const navigate = useNavigate();
+
+  const { user, handleGoogleSignin, handleGithubSignin } =
+    useContext(AuthContext);
+  // const navigate = useNavigate();
+  // console.log(user);
+  const googleSignIn = () => {
+    handleGoogleSignin()
+      .then((result) => {
+        console.log(result.user);
+        navigate("/");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  const gitHubSignIn = () => {
+    handleGithubSignin()
+      .then((result) => {
+        console.log(result.user);
+        navigate("/");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
   return (
     <div>
       <div className="hero min-h-screen bg-base-200">
@@ -46,10 +73,17 @@ const Login = () => {
                 </label>
                 <div className="text-left">
                   {/* <p>Login with Github</p> */}
-                  <button className="btn btn-wide btn-outline my-2 capitalize">
+                  <button
+                    className="btn btn-wide btn-outline my-2 capitalize"
+                    onClick={googleSignIn}
+                  >
                     Login with Google
                   </button>
-                  <button className="btn btn-wide btn-outline my-2 capitalize">
+                  {/* {user ? navigate("/") : navigate("/login")} */}
+                  <button
+                    className="btn btn-wide btn-outline my-2 capitalize"
+                    onClick={gitHubSignIn}
+                  >
                     Login with Github
                   </button>
                 </div>
