@@ -1,7 +1,60 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../contexts/UserContext";
 
 const SignUp = () => {
+  const navigate = useNavigate();
+  const { createUser, handleGithubSignin, handleGoogleSignin } =
+    useContext(AuthContext);
+
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    createUser(email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        // console.log(user);
+        form.reset();
+        // setMessage("Successfully Logged in!");
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log(error);
+        form.reset();
+        // setMessage(
+        //   error.message
+        //     .split("(")[1]
+        //     .split("/")[1]
+        //     .split(")")[0]
+        //     .split("-")
+        //     .join(" ")
+        // );
+      });
+  };
+  const googleSignIn = () => {
+    handleGoogleSignin()
+      .then((result) => {
+        // console.log(result.user);
+        navigate("/");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  const gitHubSignIn = () => {
+    handleGithubSignin()
+      .then((result) => {
+        // console.log(result.user);
+        navigate("/");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
   return (
     <div>
       <div className="hero min-h-screen bg-base-200">
@@ -10,7 +63,7 @@ const SignUp = () => {
             <h1 className="text-3xl font-bold">Please Sign Up!</h1>
           </div>
           <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-            <form className="card-body">
+            <form className="card-body" onSubmit={handleFormSubmit}>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Full Name</span>
@@ -75,6 +128,22 @@ const SignUp = () => {
                     Already have an account? Please Login
                   </Link>
                 </label>
+              </div>
+              <div className="text-left">
+                {/* <p>Login with Github</p> */}
+                <button
+                  className="btn btn-wide btn-outline my-2 capitalize"
+                  onClick={googleSignIn}
+                >
+                  Login with Google
+                </button>
+                {/* {user ? navigate("/") : navigate("/login")} */}
+                <button
+                  className="btn btn-wide btn-outline my-2 capitalize"
+                  onClick={gitHubSignIn}
+                >
+                  Login with Github
+                </button>
               </div>
               <div className="form-control mt-6">
                 <button className="btn btn-primary">Sign Up</button>
