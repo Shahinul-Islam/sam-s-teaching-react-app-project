@@ -1,15 +1,37 @@
-import React, { useContext } from "react";
+import { getAuth } from "firebase/auth";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/UserContext";
+// import app from "../firebase/firebase.init";
 
+// const auth = getAuth(app);
 const Login = () => {
-  // const {} = UserContext(AuthContext);
   const navigate = useNavigate();
+  const [message, setMessage] = useState("");
 
-  const { user, handleGoogleSignin, handleGithubSignin } =
+  const { user, singinUser, handleGoogleSignin, handleGithubSignin } =
     useContext(AuthContext);
-  // const navigate = useNavigate();
-  // console.log(user);
+
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    singinUser(email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        console.log(user);
+        form.reset();
+        setMessage("Success!");
+        // setWrongPassword("Success! Thanks");
+      })
+      .catch((error) => {
+        console.log(error);
+        form.reset();
+        setMessage(error.message);
+      });
+  };
   const googleSignIn = () => {
     handleGoogleSignin()
       .then((result) => {
@@ -39,7 +61,7 @@ const Login = () => {
             <h1 className="text-3xl font-bold">Login now!</h1>
           </div>
           <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-            <form className="card-body">
+            <form className="card-body" onSubmit={handleFormSubmit}>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
@@ -92,7 +114,7 @@ const Login = () => {
                 <button className="btn btn-primary">Login</button>
               </div>
             </form>
-            {/* <p>{wrongPassword}</p> */}
+            <p>{message}</p>
             {/* <p>{userEmail}</p> */}
           </div>
         </div>
