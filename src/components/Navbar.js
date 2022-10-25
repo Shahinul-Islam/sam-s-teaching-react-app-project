@@ -1,8 +1,18 @@
-import React from "react";
-import { FaGraduationCap } from "react-icons/fa";
+import React, { useContext } from "react";
+import { FaGraduationCap, FaUserAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../contexts/UserContext";
 
 const Navbar = () => {
+  const { user, handleGoogleSignin, logOut } = useContext(AuthContext);
+  console.log(user, handleGoogleSignin);
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => {
+        console.error(error);
+      });
+  };
   return (
     <div>
       <div className="navbar bg-blue-600">
@@ -14,7 +24,7 @@ const Navbar = () => {
                 className="h-5 w-5"
                 fill="none"
                 viewBox="0 0 24 24"
-                stroke="currentColor"
+                stroke="white"
               >
                 <path
                   strokeLinecap="round"
@@ -26,8 +36,11 @@ const Navbar = () => {
             </label>
             <ul
               tabIndex={0}
-              className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+              className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-blue-500 text-white rounded-box w-52"
             >
+              <li>
+                <Link to="/">Home</Link>
+              </li>
               <li>
                 <Link to="/courses">Courses</Link>
               </li>
@@ -41,10 +54,11 @@ const Navbar = () => {
           </div>
         </div>
         <div className="navbar-center">
-          <a className="btn btn-ghost normal-case text-xl text-white">
+          <Link className="btn btn-ghost normal-case text-xl text-white">
             Sams Teaching
             <FaGraduationCap className="text-white text-2xl ml-2" />
-          </a>
+          </Link>
+          {user ? <p>{user.displayName}</p> : <p>Not Found</p>}
         </div>
         <div className="navbar-end">
           <div>
@@ -69,30 +83,66 @@ const Navbar = () => {
           </div>
           <div className="dropdown dropdown-end">
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-              <div className="w-10 rounded-full">
-                <img src="https://placeimg.com/80/80/people" />
-              </div>
+              {user ? (
+                <div className="w-10 rounded-full">
+                  <img
+                    src={user?.photoURL}
+                    alt="profile_picture"
+                    title={user.displayName}
+                  />
+                </div>
+              ) : (
+                <FaUserAlt />
+              )}
+              {/* <div className="w-10 rounded-full">
+                <img
+                  src="https://placeimg.com/80/80/people"
+                  alt="profile_picture"
+                />
+              </div> */}
             </label>
             <ul
               tabIndex={0}
               className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
-              <li>
+              {/* <li>
                 <a className="justify-between">
                   Profile
                   <span className="badge">New</span>
                 </a>
-              </li>
+              </li> */}
+              {user ? (
+                <li onClick={handleLogOut}>
+                  <Link>Logout</Link>
+                </li>
+              ) : (
+                <li>
+                  <Link to="/login">Login</Link>
+                </li>
+              )}
+              {/* 
               <li>
-                <a>Settings</a>
-              </li>
-              <li>
-                <a>Logout</a>
-              </li>
+                <Link to="/login">Login</Link>
+              </li> */}
 
-              <li>
-                <a>Sign Up</a>
-              </li>
+              {user ? (
+                <></>
+              ) : (
+                <li>
+                  <Link to="/sign-up">Sign Up</Link>
+                </li>
+              )}
+              {user ? (
+                <></>
+              ) : (
+                <li onClick={handleGoogleSignin}>
+                  <Link>Sign Up With Google</Link>
+                </li>
+              )}
+
+              {/* <li onClick={handleLogOut}>
+                <Link>Logout</Link>
+              </li> */}
             </ul>
           </div>
         </div>

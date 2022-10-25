@@ -7,6 +7,7 @@ import Main from "./layout/Main";
 import Courses from "../src/components/Courses";
 import Faq from "../src/components/Faq";
 import Blog from "../src/components/Blog";
+import Home from "./components/Home";
 
 const router = createBrowserRouter([
   {
@@ -15,7 +16,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <SignUp></SignUp>,
+        element: <Home></Home>,
       },
       {
         path: "/sign-up",
