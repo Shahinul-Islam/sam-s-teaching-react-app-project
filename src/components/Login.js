@@ -1,10 +1,6 @@
-import { getAuth } from "firebase/auth";
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/UserContext";
-// import app from "../firebase/firebase.init";
-
-// const auth = getAuth(app);
 const Login = () => {
   const navigate = useNavigate();
   const [message, setMessage] = useState("");
@@ -25,7 +21,6 @@ const Login = () => {
         form.reset();
         setMessage("Successfully Logged in!");
         navigate("/");
-        // setWrongPassword("Success! Thanks");
       })
       .catch((error) => {
         console.log(error);
