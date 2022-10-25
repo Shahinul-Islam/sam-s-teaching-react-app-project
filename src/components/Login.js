@@ -23,13 +23,21 @@ const Login = () => {
         const user = userCredential.user;
         console.log(user);
         form.reset();
-        setMessage("Success!");
+        setMessage("Successfully Logged in!");
+        navigate("/");
         // setWrongPassword("Success! Thanks");
       })
       .catch((error) => {
         console.log(error);
         form.reset();
-        setMessage(error.message);
+        setMessage(
+          error.message
+            .split("(")[1]
+            .split("/")[1]
+            .split(")")[0]
+            .split("-")
+            .join(" ")
+        );
       });
   };
   const googleSignIn = () => {
@@ -110,11 +118,12 @@ const Login = () => {
                   </button>
                 </div>
               </div>
+
+              <p className="capitalize text-lg font-medium">{message}</p>
               <div className="form-control mt-6">
                 <button className="btn btn-primary">Login</button>
               </div>
             </form>
-            <p>{message}</p>
             {/* <p>{userEmail}</p> */}
           </div>
         </div>
