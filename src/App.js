@@ -14,6 +14,7 @@ import Blog from "../src/components/Blog";
 import Home from "./components/Home";
 import CourseDetails from "./components/CourseDetails";
 import CheckOut from "./components/CheckOut";
+import PrivateRoute from "./routes/PrivateRoute";
 
 // const param = useParams();
 
@@ -54,7 +55,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/check-out",
-        element: <CheckOut></CheckOut>,
+        element: (
+          <PrivateRoute>
+            <CheckOut></CheckOut>
+          </PrivateRoute>
+        ),
       },
     ],
   },
