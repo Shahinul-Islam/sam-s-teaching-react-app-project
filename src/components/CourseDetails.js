@@ -3,8 +3,20 @@ import { Link, useLoaderData } from "react-router-dom";
 
 const CourseDetails = () => {
   const detail = useLoaderData();
-  const { category, description, instructor, picture, price, ratings, title } =
-    detail;
+  const {
+    category,
+    description,
+    instructor,
+    picture,
+    price,
+    ratings,
+    title,
+    id,
+  } = detail;
+
+  const handleClick = (id) => {
+    console.log("btn clicked ", id);
+  };
   return (
     <div className="w-3/4 mx-auto my-10">
       <div className="card lg:card-side bg-orange-200 shadow-xl">
@@ -20,7 +32,11 @@ const CourseDetails = () => {
           <p className="text-left">Ratings: {ratings}</p>
 
           <div className="card-actions justify-end">
-            <Link to="/check-out">
+            <Link
+              to="/check-out"
+              onClick={() => handleClick(id)}
+              state={{ id }}
+            >
               <button className="btn btn-primary">Buy Now</button>
             </Link>
           </div>
