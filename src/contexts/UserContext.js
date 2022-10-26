@@ -6,6 +6,7 @@ import {
   signOut,
   signInWithPopup,
   GithubAuthProvider,
+  updateProfile,
 } from "firebase/auth";
 import React, { createContext, useEffect, useState } from "react";
 import app from "../firebase/firebase.init";
@@ -39,6 +40,10 @@ const UserContext = ({ children }) => {
     return signInWithPopup(auth, gitProvider);
   };
 
+  const updateUserProfile = (profile) => {
+    return updateProfile(auth.currentUser, profile);
+  };
+
   const logOut = () => {
     setLoading(true);
     return signOut(auth);
@@ -63,6 +68,7 @@ const UserContext = ({ children }) => {
     handleGoogleSignin,
     loading,
     handleGithubSignin,
+    updateUserProfile,
   };
   return (
     <div>

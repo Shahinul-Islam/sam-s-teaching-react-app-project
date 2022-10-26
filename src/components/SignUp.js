@@ -4,21 +4,31 @@ import { AuthContext } from "../contexts/UserContext";
 
 const SignUp = () => {
   const navigate = useNavigate();
-  const { createUser, handleGithubSignin, handleGoogleSignin } =
-    useContext(AuthContext);
+  const {
+    createUser,
+    handleGithubSignin,
+    handleGoogleSignin,
+    updateUserProfile,
+  } = useContext(AuthContext);
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
+    const fullName = form.fName.value;
+    const photo = form.photoURL.value;
+
     createUser(email, password)
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
         // console.log(user);
+        handleUserUpdateProfile(fullName, photo);
+
         form.reset();
         // setMessage("Successfully Logged in!");
+
         navigate("/");
       })
       .catch((error) => {
@@ -34,6 +44,19 @@ const SignUp = () => {
         // );
       });
   };
+
+  const handleUserUpdateProfile = (name, photoURL) => {
+    const profile = {
+      displayName: name,
+      photoURL: photoURL,
+    };
+    updateUserProfile(profile)
+      .then(() => {})
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
   const googleSignIn = () => {
     handleGoogleSignin()
       .then((result) => {
