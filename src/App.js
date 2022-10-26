@@ -8,6 +8,7 @@ import Courses from "../src/components/Courses";
 import Faq from "../src/components/Faq";
 import Blog from "../src/components/Blog";
 import Home from "./components/Home";
+import CourseDetails from "./components/CourseDetails";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: "/courses",
         element: <Courses></Courses>,
+      },
+      {
+        path: "/courses/:id",
+        element: <CourseDetails></CourseDetails>,
       },
       {
         path: "/faq",
