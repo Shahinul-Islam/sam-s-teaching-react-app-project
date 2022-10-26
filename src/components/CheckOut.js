@@ -14,7 +14,7 @@ const CheckOut = (props) => {
   }, []);
   return (
     <div>
-      <h2>this is check out page</h2>
+      <h2>check out page</h2>
       <h2>course name: {course.title}</h2>
       <h2>price: ${course.price}</h2>
     </div>
