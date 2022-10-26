@@ -1,9 +1,31 @@
 import React from "react";
+import { Link, useLoaderData } from "react-router-dom";
 
 const CourseDetails = () => {
+  const detail = useLoaderData();
+  const { category, description, instructor, picture, price, ratings, title } =
+    detail;
   return (
-    <div>
-      <h2>this is course details section </h2>
+    <div className="w-3/4 mx-auto my-10">
+      <div className="card lg:card-side bg-orange-200 shadow-xl">
+        <figure className="w-full">
+          <img src={picture} alt="Album" />
+        </figure>
+        <div className="card-body">
+          <h2 className="card-title text-left">{title}</h2>
+          <p className="text-left">{description}</p>
+          <p className="text-left">Category: {category}</p>
+          <p className="text-left">Instructor: {instructor}</p>
+          <p className="text-left">Price: ${price}</p>
+          <p className="text-left">Ratings: {ratings}</p>
+
+          <div className="card-actions justify-end">
+            <Link to="/check-out">
+              <button className="btn btn-primary">Buy Now</button>
+            </Link>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

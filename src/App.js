@@ -1,5 +1,9 @@
 // import logo from "./logo.svg";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  useParams,
+} from "react-router-dom";
 import "./App.css";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
@@ -9,6 +13,9 @@ import Faq from "../src/components/Faq";
 import Blog from "../src/components/Blog";
 import Home from "./components/Home";
 import CourseDetails from "./components/CourseDetails";
+import CheckOut from "./components/CheckOut";
+
+// const param = useParams();
 
 const router = createBrowserRouter([
   {
@@ -34,6 +41,8 @@ const router = createBrowserRouter([
       {
         path: "/courses/:id",
         element: <CourseDetails></CourseDetails>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/courses/${params.id}`),
       },
       {
         path: "/faq",
@@ -42,6 +51,10 @@ const router = createBrowserRouter([
       {
         path: "/blog",
         element: <Blog></Blog>,
+      },
+      {
+        path: "/check-out",
+        element: <CheckOut></CheckOut>,
       },
     ],
   },

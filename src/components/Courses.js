@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import CategoryName from "./CategoryName";
+// import CategoryName from "./CategoryName";
 
 const Courses = () => {
   const [courses, setCourses] = useState([]);
-  console.log(courses);
 
   useEffect(() => {
     fetch("http://localhost:5000/courses")
