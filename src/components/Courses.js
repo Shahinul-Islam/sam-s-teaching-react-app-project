@@ -27,9 +27,9 @@ const Courses = () => {
         <div className="grow grid md:grid-cols-3 p-4 gap-4">
           {courses.map((course) => (
             <Link to={`/courses/${course.id}`}>
-              <div className="card w-96 bg-base-100 shadow-xl image-full">
+              <div className="card  bg-base-100 shadow-xl">
                 <figure>
-                  <img src={course.picture} alt="Shoes" />
+                  <img src={course.picture} alt="" />
                 </figure>
                 <div className="card-body">
                   <h2 className="card-title">{course.title}</h2>

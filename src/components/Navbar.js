@@ -58,7 +58,7 @@ const Navbar = () => {
             Sams Teaching
             <FaGraduationCap className="text-white text-2xl ml-2" />
           </Link>
-          {user ? <p>{user.displayName}</p> : <p>Not Found</p>}
+          {/* {user ? <p>{user.displayName}</p> : <p>Not Found</p>} */}
         </div>
         <div className="navbar-end">
           <div>
