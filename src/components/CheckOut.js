@@ -11,7 +11,7 @@ const CheckOut = (props) => {
     fetch(`http://localhost:5000/courses/${courseId}`)
       .then((res) => res.json())
       .then((data) => setCourse(data));
-  }, []);
+  }, [location]);
   return (
     <div>
       <h2>check out page</h2>

@@ -1,6 +1,17 @@
-# Getting Started with Create React App
+# `Getting Started with sams teaching react spa project`
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is made with tailwind, daisy ui, react, firebase, express js and local server and [Create React App](https://github.com/facebook/create-react-app).
+
+## This project is about:
+
+- we fetched data from an API from local server
+- data contains course category and inside every category there are course details
+- we make them show in the UI
+- used firebasse authentication for verified user login
+- make the website fully responsive
+- used express js for backend
+- used private route option for special page
+- used jspdf for downloading pdf file
 
 ## Available Scripts
 
