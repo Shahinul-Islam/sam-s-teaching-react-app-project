@@ -1,6 +1,6 @@
 # `Getting Started with sams teaching react spa project`
 
-This project is made with tailwind, daisy ui, react, firebase, express js and local server and [Create React App](https://github.com/facebook/create-react-app).
+This project is made with tailwind, daisy ui, react, firebase, express js and local server and [visit this site](https://sams-teaching.web.app/).
 
 ## This project is about:
 
