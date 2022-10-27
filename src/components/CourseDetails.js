@@ -43,7 +43,7 @@ const CourseDetails = () => {
           <p className="text-left">Ratings: {ratings}</p>
 
           <div className="card-actions justify-end">
-            <Link to="/check-out" state={{ id, title }}>
+            <Link to="/check-out" state={{ id, title, price }}>
               <button className="btn btn-primary">Buy Now</button>
             </Link>
           </div>
